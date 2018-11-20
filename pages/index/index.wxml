@@ -1,0 +1,1 @@
+<i-button type="info" bind:click="memberClick">个人中心</i-button>

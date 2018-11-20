@@ -1,0 +1,4 @@
+<i-cell-group>
+   <i-cell title="司机认证" is-link url="/pages/renzhen/index" class="ilist"> <i-icon type="like_fill" slot="icon" /></i-cell>
+   <i-cell title="我的运单" is-link  url="/pages/orders/index" class="ilist"></i-cell>
+</i-cell-group>

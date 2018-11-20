@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/member/index",
+    "pages/index/index",
+    "pages/orders/index",
+    "pages/renzhen/index",
+    "pages/login/index"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ED1C24",
+    "navigationBarTitleText": "老司机",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "navigationStyle": "default"
+  }
+   
+}

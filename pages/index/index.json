@@ -1,0 +1,12 @@
+{
+
+  "navigationBarTitleText": "老司机",
+  "backgroundColor": "#E5E5E5",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-input": "../../dist/input/index"
+   
+  }
+}
+
