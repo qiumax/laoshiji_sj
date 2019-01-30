@@ -11,8 +11,8 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.0",
-	"appid": "wxea3a21658dc08a30",
+	"libVersion": "1.9.9",
+	"appid": "wx473b728e714d1a9c",
 	"projectname": "lsj_sj",
 	"debugOptions": {
 		"hidedInDevtools": []

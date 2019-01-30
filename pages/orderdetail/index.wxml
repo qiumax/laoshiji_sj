@@ -1,0 +1,330 @@
+
+<map  id="navi_map" style="width:100%;height:{{windowHeight/2}}px;" show-location="true"   markers="{{markers}}" include-points="{{points}}" polyline="{{polyline}}">
+
+<cover-view bindtap='showmap' style="width:100%;height:{{windowHeight/2}}px;background-color:{{backcolor}};display:flex;text-algin:center;position:relative;">
+
+</cover-view>
+ </map>
+
+
+<view wx:if="{{showdis}}" style="background-color:white;display:flex;padding:20rpx 0;">
+<view   catchtap='setpolicy' data-p_id='0' class="{{current_pathid==0?'btnchange_selected':'btnchange'}}">
+    <view class="{{current_pathid==0?'changebg_selected':'changebg'}}">推荐路线</view>
+    <view class="{{current_pathid==0?'changedis_selected':'changedis'}}">{{duration0}}</view>
+    <view class="{{current_pathid==0?'changetime_selected':'changetime'}}">{{distance0}}</view>
+</view>
+
+<view   catchtap='setpolicy' data-p_id='1' class="{{current_pathid==1?'btnchange_selected':'btnchange'}}">
+    <view class="{{current_pathid==1?'changebg_selected':'changebg'}}">{{strategy1}}</view>
+    <view class="{{current_pathid==1?'changedis_selected':'changedis'}}">{{duration1}}</view>
+    <view class="{{current_pathid==1?'changetime_selected':'changetime'}}">{{distance1}}</view>
+
+</view>
+<view   catchtap='setpolicy' data-p_id='2' class="{{current_pathid==2?'btnchange_selected':'btnchange'}}">
+    <view class="{{current_pathid==2?'changebg_selected':'changebg'}}">备选路线</view>
+    <view class="{{current_pathid==2?'changedis_selected':'changedis'}}">{{duration2}}</view>
+    <view class="{{current_pathid==2?'changetime_selected':'changetime'}}">{{distance2}}</view>
+</view>
+</view>
+
+<view style="opacity:{{opacity}};{{showdis==true?'margin-top:20rpx':' '}}">
+<!--运单状态-->
+
+<view class="yundan_statebig" wx:if="{{inqding == 1}}">
+  <view class="statebig" catchtap='showdetail'>抢单中<image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+</view>
+
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && !orderinfo.state}}">
+  <view class="statebig" catchtap='showdetail'>待接单 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  <view class="state_btnbig" >
+      <view class='btnview'>
+          <button class="btnbig" catchtap='confirmorder' style="width:250rpx;">马上抢单</button>
+      </view>
+  </view>
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 1}}" >
+  <view class="statebig" catchtap='showdetail' >已接单 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  <view class="state_btnbig" >
+      <view class='btnview1'>
+          <button class="btnbig_blue" catchtap='phone_fahuo' style="width:250rpx;">联系货主</button>
+      </view>
+      <view class='btnview2'>
+          <button class="btnbig" catchtap='confirmGetCargo' style="width:250rpx;">确认取货</button>
+      </view>
+     
+  </view>
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 &&  orderinfo.state == 2}}">
+  <view class="statebig" catchtap='showdetail'>等待发货方确认<image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 &&  orderinfo.state == 3}}">
+  <view class="statebig" catchtap='showdetail'>运送中 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+ <view class="state_btnbig" >
+      <view class='btnview1'>
+          <button class="btnbig_blue" catchtap='updatelocation' style="width:250rpx;">更新位置</button>
+      </view>
+      <view class='btnview2'>
+          <button class="btnbig" catchtap='confirmDeliver' style="width:250rpx;">确认交货</button>
+      </view>
+  </view>
+</view>
+
+
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 4}}">
+  <view class="statebig" catchtap='showdetail' >司机已确认交货 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  
+</view>
+
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 5}}">
+  <view class="statebig" catchtap='showdetail' >投诉处理中 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 6}}">
+  <view class="statebig" catchtap='showdetail' >投诉处理已完成 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 7 && !orderinfo.comment_to_company.time}}">
+  <view class="statebig" catchtap='showdetail' >已确认收货<image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+  <view class="state_btnbig" >
+      <view class='btnview'>
+          <button class="btnbig" catchtap='comment' style="width:250rpx;">评价</button>
+      </view>
+  </view>
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 7 && orderinfo.comment_to_company.time}}">
+  <view class="statebig" catchtap='showdetail' >已评价<image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+</view>
+
+<view class="yundan_statebig" wx:if="{{inqding == 0 && orderinfo.state == 8}}">
+  <view class="statebig" catchtap='showdetail' >已完成 <image src='/images/jiantou_you.png' style="width:32rpx;height:32rpx;" /></view>
+ 
+</view>
+
+  
+
+
+
+<!--上传签收信息-->
+<view wx:if="{{showUpload}}" class='productname'>上传签收照片</view>
+  
+<view wx:if="{{showUpload}}" class="line"></view>
+<view wx:if="{{showUpload}}" class='driverinfo' style="display:flex;">
+    <view  wx:if="{{showUpload0}}" style="width:18%;position:relative;height:0;padding-bottom:18%;">
+     <image   catchtap='delpic' data-p_id="0" wx:if="{{delpic == 0}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[0]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[0]}}{{random[0]}}" />
+       <image catchtap='uploadpic' data-p_id="0" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+   <view  wx:if="{{showUpload1}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+   <image catchtap='delpic' data-p_id="1" wx:if="{{delpic == 1}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[1]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[1]}}{{random[1]}}" />
+       <image catchtap='uploadpic' data-p_id="1" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+    <view  wx:if="{{showUpload2}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+    <image  catchtap='delpic' data-p_id="2" wx:if="{{delpic == 2}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[2]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[2]}}{{random[2]}}" />
+       <image catchtap='uploadpic' data-p_id="2" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+<view catchtap='uploadpic' data-p_id="3" wx:if="{{showUpload3}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+<image  catchtap='delpic' data-p_id="3" wx:if="{{delpic == 3}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[3]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[3]}}{{random[3]}}" />
+       <image  catchtap='uploadpic' data-p_id="3" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+<view catchtap='uploadpic' data-p_id="4" wx:if="{{showUpload4}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+    <image  catchtap='delpic' data-p_id="4" wx:if="{{delpic == 4}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[4]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[4]}}{{random[4]}}" />
+       <image catchtap='uploadpic' data-p_id="4" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+</view>
+
+
+
+<!--签收信息-->
+<view wx:if="{{inqding == 0 && orderinfo.state >0}}" class='productname'>地址信息</view>
+  
+<view wx:if="{{inqding == 0 && orderinfo.state >0}}" class="line"></view>
+    <!--发货地 收货地-->
+<view  wx:if="{{inqding == 0 && orderinfo.state >0}}" class="locationinfo" style="padding-top:20rpx;">
+    <view class="locationicon" style="width:20px;"><span>寄</span></view>
+    <view  catchtap='phone_fahuo' class="addinfo" style="width:{{windowWidth-68}}px;">
+            <view class="addtitle">{{orderinfo.from.name}} {{orderinfo.from.phone}}</view>
+            <view class="addcontent">{{orderinfo.from.address}}{{orderinfo.from.note}}</view>
+    </view>
+    <view catchtap='nav_fahuo' class="locationicon" style="width:18px;text-algin:right;">
+    <image src="/images/daohang1.png"  style='width:18px;height:18px;padding-top:40rpx;'/>
+    </view>
+</view>
+
+<view  wx:if="{{inqding == 0 && orderinfo.state >0}}" class="locationinfo" style="padding-top:20rpx;padding-bottom:20rpx;">
+    <view class="locationicon" style="width:20px;"><span>收</span></view>
+    <view catchtap='phone_shouhuo' class="addinfo" style="width:{{windowWidth-68}}px">
+            <view class="addtitle">{{orderinfo.to.name}} {{orderinfo.to.phone}}</view>
+            <view class="addcontent">{{orderinfo.to.address}}{{orderinfo.to.note}}</view>
+    </view>
+    <view catchtap='nav_shouhuo' class="locationicon" style="width:18px;text-algin:right;">
+    <image src="/images/daohang1.png"  style='width:18px;height:18px;padding-top:40rpx;'/>
+    </view>
+</view>
+
+
+
+
+    <!--货物详情-->
+<view class='productname'>货物信息</view>
+<view class="line"></view>
+
+<view class="feiyong">
+<view class="feiyong_left">货物</view>
+   <view  class='feiyong_right'>{{orderinfo.cargo}}/{{orderinfo.mass}}吨/{{orderinfo.size}}</view>
+</view>
+
+<view style="background-color:white;width:100%;">
+<view class="line" style="margin-left:3%;width:97%;"></view>
+</view>
+
+<!--车型-->
+<view class="feiyong">
+  <view class="feiyong_left">车型</view>
+  <view class="feiyong_right">{{orderinfo.truck.name}} {{orderinfo.truck_type}}</view>
+</view>
+
+<view style="background-color:white;width:100%;">
+<view class="line" style="margin-left:3%;width:97%;"></view>
+</view>
+
+<!--备注-->
+<view class="feiyong">
+  <view class="feiyong_left">备注</view>
+  <view class="feiyong_right">{{orderinfo.remark}}</view>
+</view>
+
+
+<view style="background-color:white;width:100%;">
+<view class="line" style="margin-left:3%;width:97%;"></view>
+</view>
+
+<!--费用-->
+<view class="feiyong">
+  <view class="feiyong_left">费用</view>
+  <view class="feiyong_right">{{orderinfo.distance}}公里 <label style="color:#ED1C24">￥{{orderinfo.price}}元</label></view>
+</view>
+
+
+<!--运单信息-->
+<view  wx:if="{{orderimg}}" class='productname'>运单二维码</view>
+  <view  wx:if="{{orderimg}}" class="line"></view>
+  <view  wx:if="{{orderimg}}" class='driverinfo' style="display:flex;">
+      <view style="width:100%;text-align:center;">
+          <image src='{{orderimg}}' style="width:40%;" mode='widthFix'/>
+      </view>
+  </view>
+
+
+
+
+<!--签收信息-->
+<view wx:if="{{showpics}}" class='productname'>签收信息</view>
+  
+<view wx:if="{{showpics}}" class="line"></view>
+<view wx:if="{{showpics}}" class='driverinfo' style="display:flex;">
+    <view style="width:100%;">
+                 
+                <image catchtap='showqspics'  wx:for="{{orderinfo.driver_confirm_deliver_at.pics}}" wx:for-index="index" class="pt_image" src="{{orderinfo.driver_confirm_deliver_at.pics[index]}}" data-img="{{orderinfo.driver_confirm_deliver_at.pics[index]}}" />
+         
+      
+    </view>
+</view>
+
+
+<!--投诉信息-->
+<view wx:if="{{orderinfo.tousu_to_driver.content}}" class='productname'>投诉信息</view>
+  <view wx:if="{{orderinfo.tousu_to_driver.content}}" style="background-color:white;width:100%;">
+    <view class="line" style="margin-left:3%;width:97%;"></view>
+  </view>
+  <view wx:if="{{orderinfo.tousu_to_driver.content}}" class="feiyong_tousu">
+  <view class="feiyong_tousu_left">{{orderinfo.tousu_to_driver.content}}</view>
+</view>
+
+<view wx:if="{{orderinfo.tousu_to_driver.content}}" class='driverinfo' style="display:flex;padding-top:0">
+  
+    <view style="width:100%;">
+      <image catchtap='showtspics'  wx:for="{{orderinfo.tousu_to_driver.pics}}" wx:for-index="index" class="pt_image" src="{{orderinfo.tousu_to_driver.pics[index]}}" data-img="{{orderinfo.tousu_to_driver.pics[index]}}" />
+
+    </view>
+</view>
+
+
+<!--处理投诉信息-->
+<view wx:if="{{orderinfo.plat_handle_tousu.content}}" class='productname'>投诉处理信息</view>
+  <view wx:if="{{orderinfo.plat_handle_tousu.content}}" style="background-color:white;width:100%;">
+    <view class="line" style="margin-left:3%;width:97%;"></view>
+  </view>
+  <view wx:if="{{orderinfo.plat_handle_tousu.content}}" class="feiyong_tousu">
+    <view class="feiyong_tousu_left">{{orderinfo.plat_handle_tousu.content}}</view>
+</view>
+
+
+
+<view wx:if="{{orderinfo.plat_handle_tousu.content}}" class='driverinfo' style="display:flex;padding-top:0">
+  
+    <view style="width:100%;">
+      <image catchtap='showhandletspics'  wx:for="{{orderinfo.plat_handle_tousu.pics}}" wx:for-index="index" class="pt_image" src="{{orderinfo.plat_handle_tousu.pics[index]}}" data-img="{{orderinfo.plat_handle_tousu.pics[index]}}" />
+
+    </view>
+</view>
+
+
+
+<!--联系平台-->
+<view catchtap='phoneplat' class='phoneplat' style="">
+  <image src='/images/kefu.png' style="height:30rpx;width:30rpx; vertical-align:middle;"/> 
+  <span style="line-height:50rpx;font-size:30rpx;">老司机平台客服</span>
+  </view>
+
+</view>
+
+<!--记录-->
+
+<scroll-view wx:if="{{showdetail}}" class="xuan_bottom" style="height:{{windowHeight/2-40}}px;" catchtouchmove="preventTouchMove" scroll-y="true">
+  <view class='bottom_title'>运单跟踪</view>
+  <view class="line"></view>
+  <view class="bottom_detail">
+    <i-steps current="{{verticalCurrent}}" direction="vertical">
+          <i-step wx:for="{{logs}}" wx:for-item="log">
+              <view slot="title">
+                    {{log.action}}
+              </view>
+              <view slot="content">
+                  {{log.time}}
+              </view>
+          </i-step>
+      </i-steps>
+  </view>
+</scroll-view>
+
+<button  wx:if="{{showdetail}}" class='bottom_btn' catchtap='closedetail'>关闭</button>
+
+
+
+
+
+

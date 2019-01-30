@@ -1,0 +1,40 @@
+page{
+  background-color: #e5e5e5;
+  
+}
+
+
+
+.line{
+margin: 0 auto;
+width: 100%;
+height: 1rpx;
+background-color: #E8E8E8;
+}
+
+
+ .btn{
+   border: none;
+   background-color: #ED1C24;
+   color:white;
+  
+   margin:40rpx 3% 0 3%;
+ }
+
+   .driverinfo{
+   background-color: white;
+   padding-top: 30rpx;
+   padding-bottom: 30rpx;
+   padding-right:3%;
+   padding-left:3%;
+ }
+ 
+.delete{
+    width:40rpx;
+    height:40rpx;
+    border-radius:60%;
+    position:absolute;
+    top:-20rpx;
+    right:-20rpx;
+    z-index: 999;
+}

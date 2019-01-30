@@ -29,6 +29,9 @@ Component({
         value: {
             type: String
         },
+        valueStyle:{
+            type:String
+        },
         // 只有点击 footer 区域才触发 tab 事件
         onlyTapFooter: {
             type: Boolean

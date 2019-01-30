@@ -1,0 +1,51 @@
+  <!--没有-->
+  <view wx:if="{{!hasneed}}" style="padding-top:50rpx;text-align:center;">
+ 
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">暂无运单</view>
+  </view>
+
+<view wx:if="{{hasneed}}" class="viewlist" catchtap='gotordertake' data-order_id="{{need._id}}" wx:for="{{needlist}}" wx:for-item='need'>
+    <!--title-->
+    <view style="display:table-cell;padding-top:20rpx;padding-left:30rpx;padding-bottom:20rpx;font-size:15px;color:#666666;font-weight:bold;">
+    {{need.from.city}} -> {{need.to.city}}
+    </view>
+    <view class="line"></view>
+    <view style='text-align:center;'> 
+                <i-grid-item i-class="grid-padding">
+                      <label class="gridtitle">金额</label> 
+                      <label class="gridvalue_red">{{need.price}}元</label>                     
+                </i-grid-item>
+
+                <i-grid-item  i-class="grid-padding">                   
+                      <label class="gridtitle">车型</label> 
+                       <label class="gridvalue">{{need.truck.name}} {{need.truck_type}}</label>
+                </i-grid-item>
+               
+                <i-grid-item i-class="grid-padding">                    
+                      <label class="gridtitle">距离</label> 
+                      <label class="gridvalue">{{need.distance}}公里</label>
+                </i-grid-item>
+    </view>
+
+    <!--detail--->
+    <view>
+        <view style='display:table-cell;padding-top:20rpx;padding-left:20rpx;padding-bottom:20rpx;'>
+            <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{need.time}}</label></view>
+            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{need.cargo}} / {{need.mass}}吨 / {{need.size}} </label></view>
+            <view class="viewtitle"><image src="/images/xiangqing.png" class="view_img"/> <label class="viewlabel">{{need.remark}}</label></view>
+            
+        </view>
+    </view>
+   
+
+</view>
+
+  <!--悬浮start-->
+<view class="xuan_bottom" catchtap='refreshneed'>
+   <view style="height:110rpx;width:110rpx;border:1rpx #BDC3C7 solid;border-radius:50%;background-color:white;">
+   <image src="/images/shuaxin.png" style='height:55rpx;width:55rpx;padding-left:27rpx;padding-top:12rpx;display:block'/>
+    <view style="text-align:center;font-size:20rpx;color:#ED1C24;">刷新</view> 
+   </view>
+</view>
+<!--悬浮end-->
+

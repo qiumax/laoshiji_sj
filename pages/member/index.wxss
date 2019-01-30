@@ -1,4 +1,68 @@
-.ilist{
-  color:#666666;
+page{
+  background-color: #e5e5e5;
   
 }
+.head_top{
+  background-image: url('https://fpf-wx-1256343243.cos.ap-guangzhou.myqcloud.com/member_bg.png');
+  background-size: 100% 100%;
+  position: fixed;
+  top:0;
+  width: 100%;
+}
+
+.gridvalue{
+  font-size:16px;
+  color:#666666;
+  font-weight: bold;
+  display: block;
+}
+.gridtitle{
+  margin-top: 5px;
+  font-size:14px;
+  color:#666666;
+  display: block;
+}
+
+.grid-padding{
+  padding:20px 10px;
+}
+.btn_submit{
+  background-color: #ED1C24;
+  color:#ffffff;
+  width: 95%;
+}
+
+.bottom_btn{
+  width: 100%;
+  position: fixed;
+  bottom: 10rpx;
+  flex-flow:row nowrap;
+  justify-content:flex-start;
+  vertical-align:middle;
+}
+
+.viewtitle{
+  color:#666666;
+  font-size: 14px;
+  height: 25px;
+  line-height: 25px;
+  overflow: hidden;
+}
+
+.viewlabel{
+  color:#666666;
+  padding-left:10px;
+
+}
+.ilist{
+  color:#666666;
+}
+.i-cell-access .span_right::after{content:" ";
+display:inline-block;
+width:6px;height:6px;
+position:absolute;top:50%;
+right:15px;border-width:2px 2px 0 0;
+border-color:#dddee1;border-style:solid;
+transform:translateY(-50%) matrix(.71,.71,-.71,.71,0,0)}
+
+

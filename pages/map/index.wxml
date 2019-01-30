@@ -1,0 +1,22 @@
+<map id="navi_map" style="width:100%;height:{{windowHeight-disheight}}px;" show-location="true"   markers="{{markers}}" include-points="{{points}}" polyline="{{polyline}}">
+ </map>
+
+ <view wx:if="{{showdis}}" style="background-color:white;display:flex;padding:10px 0;">
+<view   catchtap='setpolicy' data-p_id='0' class="{{current_pathid==0?'btnchange_selected':'btnchange'}}">
+    <view class="{{current_pathid==0?'changebg_selected':'changebg'}}">{{strategys[0]}}</view>
+    <view class="{{current_pathid==0?'changedis_selected':'changedis'}}">{{durations[0]}}</view>
+    <view class="{{current_pathid==0?'changetime_selected':'changetime'}}">{{distances[0]}}</view>
+</view>
+
+<view   catchtap='setpolicy' data-p_id='1' class="{{current_pathid==1?'btnchange_selected':'btnchange'}}">
+    <view class="{{current_pathid==1?'changebg_selected':'changebg'}}">{{strategys[1]}}</view>
+    <view class="{{current_pathid==1?'changedis_selected':'changedis'}}">{{durations[1]}}</view>
+    <view class="{{current_pathid==1?'changetime_selected':'changetime'}}">{{distances[1]}}</view>
+
+</view>
+<view   catchtap='setpolicy' data-p_id='2' class="{{current_pathid==2?'btnchange_selected':'btnchange'}}">
+    <view class="{{current_pathid==2?'changebg_selected':'changebg'}}">{{strategys[2]}}</view>
+    <view class="{{current_pathid==2?'changedis_selected':'changedis'}}">{{durations[2]}}</view>
+    <view class="{{current_pathid==2?'changetime_selected':'changetime'}}">{{distances[2]}}</view>
+</view>
+</view>

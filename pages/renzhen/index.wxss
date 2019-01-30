@@ -1,1 +1,16 @@
 /* pages/renzhen/index.wxss */
+
+.btn_submit{
+  height: 80rpx;
+  width: 100%;
+line-height: 80rpx;
+  background-color: #ED1C24;
+  color:#ffffff;
+}
+
+.bottom_btn{
+  width: 96%;
+  height: 80rpx;
+  padding-left: 2%;
+}
+

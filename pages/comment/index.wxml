@@ -1,0 +1,77 @@
+
+<!--分数-->
+<view style="text-align:center;background-color:white;padding-top:40rpx;color:#666666;font-size:28rpx;">
+为企业打分
+<i-cell-group>
+    <i-cell title="">
+        <i-rate 
+            bind:change="onChange" 
+            value="{{starIndex}}" 
+            size="32">
+        </i-rate>
+    </i-cell>
+</i-cell-group>
+
+
+</view>
+
+<view class='line'></view>
+<!--内容--->
+<view  style="text-align:center;background-color:white;padding-top:40rpx;color:#666666;font-size:28rpx;padding-bottom:40rpx;">
+内容
+<textarea bindinput='comcontent' style="border:1rpx #e8e8e8 solid;height:250rpx;margin-left:3%;margin-right:3%;width:94%;padding-top:10rpx;text-align:left;margin-top:40rpx;" placeholder='输入对企业的评价吧'>
+
+</textarea>
+</view>
+
+
+
+<!--内容--->
+<view  style="text-align:center;background-color:white;padding-top:40rpx;color:#666666;font-size:28rpx;" >
+上传评价图片
+
+
+
+</view>
+
+<view wx:if="{{showUpload}}" class='driverinfo' style="display:flex;">
+    <view  wx:if="{{showUpload0}}" style="width:18%;position:relative;height:0;padding-bottom:18%;">
+     <image   catchtap='delpic' data-p_id="0" wx:if="{{delpic == 0}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[0]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[0]}}{{random[0]}}" />
+       <image catchtap='uploadpic' data-p_id="0" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+   <view  wx:if="{{showUpload1}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+   <image catchtap='delpic' data-p_id="1" wx:if="{{delpic == 1}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[1]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[1]}}{{random[1]}}" />
+       <image catchtap='uploadpic' data-p_id="1" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+    <view  wx:if="{{showUpload2}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+    <image  catchtap='delpic' data-p_id="2" wx:if="{{delpic == 2}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[2]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[2]}}{{random[2]}}" />
+       <image catchtap='uploadpic' data-p_id="2" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+<view catchtap='uploadpic' data-p_id="3" wx:if="{{showUpload3}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+<image  catchtap='delpic' data-p_id="3" wx:if="{{delpic == 3}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[3]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[3]}}{{random[3]}}" />
+       <image  catchtap='uploadpic' data-p_id="3" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+<view catchtap='uploadpic' data-p_id="4" wx:if="{{showUpload4}}" style="width:18%;position:relative;height:0;padding-bottom:18%;margin-left:2%;">
+    <image  catchtap='delpic' data-p_id="4" wx:if="{{delpic == 4}}" src="/images/del1.png" class="delete"/>
+       <image wx:if="{{pics[4]}}" style="width:100%;position:absolute;height:100%;" src="{{pics[4]}}{{random[4]}}" />
+       <image catchtap='uploadpic' data-p_id="4" wx:else style="width:100%;position:absolute;height:100%;" src="/images/upload.png" />
+      
+    </view>
+
+</view>
+
+<button class='btn' catchtap='comment'>提交</button>
+
+
+

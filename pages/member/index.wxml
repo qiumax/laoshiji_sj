@@ -1,4 +1,76 @@
-<i-cell-group>
-   <i-cell title="司机认证" is-link url="/pages/renzhen/index" class="ilist"> <i-icon type="like_fill" slot="icon" /></i-cell>
-   <i-cell title="我的运单" is-link  url="/pages/orders/index" class="ilist"></i-cell>
-</i-cell-group>
+<!--head top-->
+<view class="head_top" style="height:300rpx;z-index:9;">
+  <view style="padding-top:10rpx;font-size:30rpx;color:white;text-align:center;">
+    <image src="{{avatar}}" style="width:120rpx;height:120rpx;border-radius:50%;"></image>
+  <view style='vertical-align:middle;line-height:50rpx;height:50rpx;'>{{name}}</view>    
+    <view>
+          <i-rate 
+              disabled="{{true}}"
+              value="{{star}}">
+              {{star}}分
+          </i-rate>
+    </view> 
+  </view>
+</view>
+
+<view style='padding-top:300rpx;'>
+
+  <!--统计-->
+  <view style="background-color:white;text-align:center;">
+
+          <i-row>
+              <i-grid-item i-class="grid-padding">
+                    <label class="gridvalue">{{day}}天</label>
+                    <label class="gridtitle">配送总时长</label> 
+              </i-grid-item>
+              <i-grid-item i-class="grid-padding">
+                    <label class="gridvalue">{{num}}单</label>
+                    <label class="gridtitle">配送总单数</label> 
+              </i-grid-item>
+              <i-grid-item i-class="grid-padding"> 
+                    <label class="gridvalue">{{distance}}公里</label>
+                    <label class="gridtitle">配送总距离</label> 
+              </i-grid-item>
+          </i-row>
+ 
+  </view>
+
+  <!--待处理-->
+
+  <view wx:if='{{hascurrentorder}}' catchtap='gotodetail' style="background-color:#ffffff;padding-left:15px;margin-top:20rpx;">
+    <view class="'i-cell-access" style="position:relative;padding:8px 0;color:#3592E1;font-size:14px;border-bottom:1rpx #e9eaec solid;">待处理运单 <view class="span_right" style="float:right;padding-right:28px;">{{orderstatus}}</view>
+    </view>
+    
+    <view style='display:table-cell;padding-bottom:8px;padding-top:6px;'>
+      <view class="viewtitle">收发地址 <label class="viewlabel">{{currentorder.from.city}}   ->   {{currentorder.to.city}}</label></view>
+      <view class="viewtitle">接货时间 <label class="viewlabel">{{currentorder.time}}</label></view>
+      <view class="viewtitle">货物详情 <label class="viewlabel">{{currentorder.cargo}} / {{currentorder.mass}}吨 / {{currentorder.size}}</label></view>
+    </view>
+  </view>
+
+
+  <view style="padding-top:20rpx;padding-bottom:140rpx;">
+      <!--列表-->
+      <i-cell-group>
+        <i-cell title="司机认证" is-link url="/pages/renzhen/index" class="ilist" value="{{validstatus}}" valueStyle="color:red;"></i-cell>
+        <i-cell title="我的运单" is-link  url="/pages/orders/index" class="ilist"></i-cell>
+          <i-cell title="我的钱包" is-link  url="/pages/money/index" class="ilist"></i-cell>
+      </i-cell-group>
+  </view>
+
+</view>
+
+<!--接单-->
+
+<view wx:if="{{state == 1}}" class="bottom_btn"> 
+ <button catchtap='getorder'  class="btn_submit" >去接单</button>
+</view>
+<view wx:if="{{state == 0 && phone}}" class="bottom_btn">
+  <button catchtap='gotovalid' class="btn_submit">去认证</button>
+</view>
+<view wx:if="{{state == 0 && !phone}}" class="bottom_btn">
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-type='gotovalid'  class="btn_submit">去认证</button>
+</view>
+
+
+

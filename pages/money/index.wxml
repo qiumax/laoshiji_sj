@@ -1,0 +1,42 @@
+<!--head top-->
+<view class="head_top" style="height:300rpx;z-index:9;">
+  <view style="padding-top:10rpx;font-size:30rpx;color:white;text-align:center;">
+    <image src="{{userinfo.avatar}}" style="width:120rpx;height:120rpx;border-radius:50%;"></image>
+  <view style='vertical-align:middle;line-height:50rpx;height:50rpx;'>{{userinfo.name}}</view>     
+    <view style="padding-top:40rpx;float:right;padding-right:20rpx;height:50rpx;"> 总收入：2530元</view> 
+  </view>
+</view>
+
+
+<!--list-->
+
+  <view style="margin-top:300rpx;height:20rpx;"></view>
+
+  <view style="background-color:#ffffff;">
+      <view class="span_title">
+        <span class='spanleft'>2018-11-30</span>
+        <span class='spanright'>￥1530元</span>
+      </view>
+  
+      <view style='display:table-cell;padding-bottom:8px;padding-top:6px;'>
+        <view class="viewtitle"> <image src="/images/daohang.png" class="view_img"/> <label class="viewlabel">长沙市三一工业城                      </label></view>
+        <view class="viewtitle"> <image src="/images/yuan.png" class="view_img"/> <label class="viewlabel">深圳市宝安国际机场                       </label></view>
+      </view>
+  </view>
+
+
+    <view style="background-color:#ffffff;margin-top:20rpx;">
+      <view class="span_title">
+        <span class='spanleft'>2018-11-30</span>
+        <span class='spanright'>￥1000元</span>
+      </view>
+  
+      <view style='display:table-cell;padding-bottom:8px;padding-top:6px;'>
+        <view class="viewtitle"> <image src="/images/daohang.png" class="view_img"/> <label class="viewlabel">长沙市三一工业城                      </label></view>
+        <view class="viewtitle"> <image src="/images/yuan.png" class="view_img"/> <label class="viewlabel">深圳市宝安国际机场                       </label></view>
+      </view>
+    </view>
+
+
+
+

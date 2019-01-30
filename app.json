@@ -2,9 +2,14 @@
   "pages": [
     "pages/member/index",
     "pages/index/index",
+    "pages/jiedan/index",
     "pages/orders/index",
+    "pages/orderdetail/index",
     "pages/renzhen/index",
-    "pages/login/index"
+    "pages/money/index",
+    "pages/comment/index",
+    "pages/login/index",
+    "pages/map/index"
     
   ],
   "window": {
@@ -15,6 +20,11 @@
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50,
     "navigationStyle": "default"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
    
 }

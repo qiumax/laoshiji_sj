@@ -1,0 +1,57 @@
+page{
+  background-color: #e5e5e5;
+  
+}
+.head_top{
+  background-image: url('https://fpf-wx-1256343243.cos.ap-guangzhou.myqcloud.com/member_bg.png');
+  background-size: 100% 100%;
+  position: fixed;
+  top:0;
+  width: 100%;
+}
+
+.span_title{
+  padding:8px 0;
+  color:#666666;
+  font-size:14px;
+  border-bottom:1rpx #e9eaec solid;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.spanleft{
+  display: block;
+  float: left;
+  font-size: 14px;
+  color:#666666;
+  padding-left:10px;
+
+}
+
+.spanright{
+  display: block;
+  float: right;
+  font-size: 14px;
+  color:#ED1C24;
+  padding-right: 10px;
+
+}
+
+.view_img{
+  width:12px;
+  height:12px;
+  padding-left:10px;
+}
+
+.viewlabel{
+  color:#666666;
+  padding-left:10px;
+}
+
+.viewtitle{
+  color:#666666;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+
+}

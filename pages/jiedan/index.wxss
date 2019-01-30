@@ -1,0 +1,90 @@
+/* pages/jiedan/index.wxss */
+
+page{
+  background-color: #e5e5e5;
+  
+}
+
+.viewlist{
+  background-color:#ffffff;
+  margin-top:20rpx;
+  width:96%;
+  margin-left:2%;
+  border-radius:16rpx;
+}
+.viewtitle{
+  color:#666666;
+  font-size: 14px;
+  height: 25px;
+  line-height: 25px;
+  
+}
+
+.line{
+margin: 0 auto;
+width: 100%;
+height: 1rpx;
+background-color: #E8E8E8;
+}
+
+.view_img{
+  width:12px;
+  height:12px;
+  padding-left:10rpx;
+}
+
+.viewlabel{
+  color:#666666;
+  padding-left:10px;
+}
+
+
+
+.gridvalue{
+    margin-top: 5px;
+  font-size:14px;
+  font-weight: bold;
+  color:#666666;
+  display: block;
+}
+.gridvalue_red{
+  margin-top: 5px;
+  font-size:14px;
+  font-weight: bold;
+  color:#ED1C24;
+  display: block;
+}
+
+.grid-padding{
+  padding:8px 10px;
+
+}
+.gridtitle{
+
+  font-size:14px;
+  color:#666666;
+  display: block;
+}
+
+.viewtitle{
+  color:#666666;
+  font-size: 14px;
+  height: 22px;
+  line-height: 22px;
+  padding:4px 0;
+  overflow: hidden;
+}
+
+.viewlabel{
+  color:#666666;
+  padding-left:10px;
+}
+
+.xuan_bottom{
+  position: fixed;
+  bottom: 50rpx;
+  width: 110rpx;
+  height: 110rpx;
+  right: 50rpx;
+
+}

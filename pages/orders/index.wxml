@@ -1,2 +1,139 @@
-<!--pages/orders/index.wxml-->
-<text>pages/orders/index.wxml</text>
+
+    <!--导航-->
+    <view class="top_tab_view">
+    <view bindtap="tabChoice" data-tabid="0" class='top_tab'  class="{{currentId==0?'top_tab_selected':'top_tab'}}">已完成</view>
+    <view bindtap="tabChoice" data-tabid="1" class='top_tab'  class="{{currentId==1?'top_tab_selected':'top_tab'}}">进行中</view>
+    <view bindtap="tabChoice" data-tabid="2" class='top_tab'  class="{{currentId==2?'top_tab_selected':'top_tab'}}">已失败</view>
+    </view>
+
+<view wx:if="{{currentId==0}}">
+   <!--没有-->
+  <view wx:if="{{finish.length==0}}" style="padding-top:50rpx;text-align:center;">
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">暂无运单</view>
+  </view>
+
+<view wx:if="{{finish.length>0}}" class="viewlist" catchtap='gotodetail' data-order_id="{{order._id}}" wx:for="{{finish}}" wx:for-item='order'>
+    <view style="display:table-cell;padding-top:20rpx;padding-left:30rpx;padding-bottom:20rpx;font-size:15px;color:#666666;">
+    {{order.from.city}} -> {{order.to.city}}
+    </view>
+    <view class="line"></view>
+    <!--title-->
+    <view style='text-align:center;'> 
+                <i-grid-item i-class="grid-padding">
+                      <label class="gridtitle">金额</label> 
+                      <label class="gridvalue_red">{{order.price}}元</label>                     
+                </i-grid-item>
+
+                <i-grid-item  i-class="grid-padding">                   
+                      <label class="gridtitle">车型</label> 
+                       <label class="gridvalue">{{order.truck.name}} {{order.truck_type}}</label>
+                </i-grid-item>
+               
+                <i-grid-item i-class="grid-padding">                    
+                      <label class="gridtitle">距离</label> 
+                      <label class="gridvalue">{{order.distance}}公里</label>
+                </i-grid-item>
+    </view>
+
+    <!--detail--->
+    <view>
+        <view style='display:table-cell;padding-top:20rpx;padding-left:20rpx;padding-bottom:20rpx;'>
+            <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{order.time}}</label></view>
+            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{order.cargo}} / {{order.mass}}吨 /  {{order.size}} </label></view>
+            <view class="viewtitle"><image src="/images/xiangqing.png" class="view_img"/> <label class="viewlabel">{{order.remark}}</label></view>
+        </view>
+    </view>
+   
+
+</view>
+
+</view>
+
+
+<view wx:if="{{currentId==1}}">
+
+   <!--没有-->
+  <view wx:if="{{ing.length==0}}" style="padding-top:50rpx;text-align:center;">
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">暂无运单</view>
+  </view>
+
+<view wx:if="{{ing.length>0}}" class="viewlist" catchtap='gotodetail' data-order_id="{{order._id}}" wx:for="{{ing}}" wx:for-item='order'>
+    <!--title-->
+     <view style="display:table-cell;padding-top:20rpx;padding-left:30rpx;padding-bottom:20rpx;font-size:15px;color:#666666;">
+    {{order.from.city}} -> {{order.to.city}}
+    </view>
+    <view class="line"></view>
+
+    <view style='text-align:center;'> 
+                <i-grid-item i-class="grid-padding">
+                      <label class="gridtitle">金额</label> 
+                      <label class="gridvalue_red">{{order.price}}元</label>                     
+                </i-grid-item>
+
+                <i-grid-item  i-class="grid-padding">                   
+                      <label class="gridtitle">车型</label> 
+                       <label class="gridvalue">{{order.truck.name}} {{order.truck_type}}</label>
+                </i-grid-item>
+
+                <i-grid-item i-class="grid-padding">                    
+                      <label class="gridtitle">距离</label> 
+                      <label class="gridvalue">{{order.distance}}公里</label>
+                </i-grid-item>
+    </view>
+
+    <!--detail--->
+    <view>
+              <view style='display:table-cell;padding-top:20rpx;padding-left:20rpx;padding-bottom:20rpx;'>
+            <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{order.time}}</label></view>
+            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{order.cargo}} / {{order.mass}}吨 /  {{order.size}} </label></view>
+            <view class="viewtitle"><image src="/images/xiangqing.png" class="view_img"/> <label class="viewlabel">{{order.remark}}</label></view>
+        </view>
+    </view>
+   
+
+</view>
+</view>
+
+
+<view wx:if="{{currentId==2}}">
+
+   <!--没有-->
+  <view wx:if="{{fail.length==0}}" style="padding-top:50rpx;text-align:center;">
+      <view style="font-size:28rpx;color:#666666;padding-top:20rpx;">暂无运单</view>
+  </view>
+
+<view wx:if="{{fail.length>0}}" class="viewlist" data-order_id="{{order._id}}" wx:for="{{fail}}" wx:for-item='order'>
+    <!--title-->
+         <view style="display:table-cell;padding-top:20rpx;padding-left:30rpx;padding-bottom:20rpx;font-size:15px;color:#666666;">
+    {{order.from.city}} -> {{order.to.city}}
+    </view>
+    <view class="line"></view>
+    <view style='text-align:center;'> 
+                <i-grid-item i-class="grid-padding">
+                      <label class="gridtitle">金额</label> 
+                      <label class="gridvalue_red">{{order.price}}元</label>                     
+                </i-grid-item>
+
+                <i-grid-item  i-class="grid-padding">                   
+                      <label class="gridtitle">车型</label> 
+                       <label class="gridvalue">{{order.truck.name}} {{order.truck_type}}</label>
+                </i-grid-item>
+
+                <i-grid-item i-class="grid-padding">                    
+                      <label class="gridtitle">距离</label> 
+                      <label class="gridvalue">{{order.distance}}公里</label>
+                </i-grid-item>
+    </view>
+
+    <!--detail--->
+    <view>
+        <view style='display:table-cell;padding-top:20rpx;padding-left:20rpx;padding-bottom:20rpx;'>
+            <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{order.time}}</label></view>
+            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{order.cargo}} / {{order.mass}}吨 /  {{order.size}} </label></view>
+            <view class="viewtitle"><image src="/images/xiangqing.png" class="view_img"/> <label class="viewlabel">{{order.remark}}</label></view>
+        </view>
+    </view>
+   
+
+</view>
+</view>

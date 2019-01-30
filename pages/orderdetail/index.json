@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "运单详情",
+  "usingComponents": {
+    "i-steps": "../../dist/steps/index",
+    "i-step": "../../dist/step/index",
+    "i-rate": "../../dist/rate/index"   
+  }
+}

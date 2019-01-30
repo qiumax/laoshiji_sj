@@ -5,7 +5,9 @@
   "backgroundTextStyle": "light",
   "usingComponents": {
     "i-button": "../../dist/button/index",
-    "i-input": "../../dist/input/index"
+    "i-input": "../../dist/input/index",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index"
    
   }
 }
