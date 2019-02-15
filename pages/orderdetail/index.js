@@ -236,9 +236,9 @@ console.log('unload')
 
        polyline.push(nopastpoints[0])
 
-        // _this.setData({
-        //   polyline: polyline,
-        // });
+        //  _this.setData({
+        //    polyline: polyline,
+        //  });
 
      }
   },
@@ -808,6 +808,23 @@ console.log('unload')
         success: function (res) {
           console.log(res)
           if (!res.data.err) {
+            if(!res.data.order)
+            {
+              wx.showToast({
+                icon: 'none',
+                title: '运单已取消！',
+                duration: 3000,
+                success(res) {
+                  setTimeout(function () {
+                    wx.reLaunch({
+                      url: '/pages/member/index',
+                    })
+                  }, 2000);
+
+                }
+
+              })
+            }
 
             //抢单司机是否是本人
             var localdriver = wx.getStorageSync('driver_id')
@@ -828,6 +845,7 @@ console.log('unload')
               _this.getOrderDetail()
             }, app.globalData.refreshtime)
 
+           
             _this.setData({ interval: interval })
             var inqding = 0
             if (res.data.inqding){
@@ -835,13 +853,33 @@ console.log('unload')
             }
 
               console.log(res.data.order)
-            _this.setData({
-              orderinfo: res.data.order,
-              inqding: inqding})
+            var orderinfo = res.data.order
+            orderinfo.time = util.formatDate(orderinfo.time)
+            orderinfo.arrive_time = util.formatDate(orderinfo.arrive_time)
 
+            _this.setData({
+              orderinfo: orderinfo,
+              inqding: inqding})
+            _this.setData({ order_id: res.data.order._id })
             //image
             if (res.data.image) {
-              _this.setData({ orderimg: app.globalData.comhost + res.data.image })
+
+              //去企业端请求二维码
+              wx.request({
+                url: app.globalData.comhost +'/wx/order_wxcode',
+                data:{
+                  order_id: res.data.order._id
+                },
+                method: 'POST',
+                header: {
+                  'content-type': 'application/json'
+                }, 
+                success:function(resimg){
+                  console.log(resimg)
+                  _this.setData({ orderimg: app.globalData.comhost + res.data.image })
+                }
+              })
+              
             }
 
             //判断司机是否确认交货
@@ -1194,9 +1232,9 @@ console.log('unload')
                 durations.push(_this.data.duration1)
                 durations.push(_this.data.duration2)
 
-                strategys.push('推荐路线')
+                strategys.push(_this.data.strategy0)
                 strategys.push(_this.data.strategy1)
-                strategys.push('备选路线')
+                strategys.push(_this.data.strategy2)
 
                 polylines.push(_this.data.polyline0)
                 polylines.push(_this.data.polyline1)
@@ -1256,6 +1294,28 @@ console.log('unload')
     wx.previewImage({
       current: img,
       urls: _this.data.orderinfo.plat_handle_tousu.pics
+    })
+  },
+
+  //企业评价
+  show_com_pics: function (e) {
+    console.log(e)
+    var _this = this
+    var img = e.currentTarget.dataset.img
+    wx.previewImage({
+      current: img,
+      urls: _this.data.orderinfo.comment_to_company.pics
+    })
+  },
+
+  //司机
+  show_driver_pics: function (e) {
+    console.log(e)
+    var _this = this
+    var img = e.currentTarget.dataset.img
+    wx.previewImage({
+      current: img,
+      urls: _this.data.orderinfo.comment_to_driver.pics
     })
   },
 

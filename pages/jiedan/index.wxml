@@ -30,8 +30,8 @@
     <!--detail--->
     <view>
         <view style='display:table-cell;padding-top:20rpx;padding-left:20rpx;padding-bottom:20rpx;'>
-            <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{need.time}}</label></view>
-            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{need.cargo}} / {{need.mass}}吨 / {{need.size}} </label></view>
+            <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{need.time}} 接货 / {{need.arrive_time}} 到货</label></view>
+            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{need.cargo}} / {{need.mass}}吨/{{need.size}}/{{need.peizai}}/{{need.chaoxian}} </label></view>
             <view class="viewtitle"><image src="/images/xiangqing.png" class="view_img"/> <label class="viewlabel">{{need.remark}}</label></view>
             
         </view>

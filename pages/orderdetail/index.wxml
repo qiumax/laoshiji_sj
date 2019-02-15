@@ -9,7 +9,7 @@
 
 <view wx:if="{{showdis}}" style="background-color:white;display:flex;padding:20rpx 0;">
 <view   catchtap='setpolicy' data-p_id='0' class="{{current_pathid==0?'btnchange_selected':'btnchange'}}">
-    <view class="{{current_pathid==0?'changebg_selected':'changebg'}}">推荐路线</view>
+    <view class="{{current_pathid==0?'changebg_selected':'changebg'}}">{{strategy0}}</view>
     <view class="{{current_pathid==0?'changedis_selected':'changedis'}}">{{duration0}}</view>
     <view class="{{current_pathid==0?'changetime_selected':'changetime'}}">{{distance0}}</view>
 </view>
@@ -21,7 +21,7 @@
 
 </view>
 <view   catchtap='setpolicy' data-p_id='2' class="{{current_pathid==2?'btnchange_selected':'btnchange'}}">
-    <view class="{{current_pathid==2?'changebg_selected':'changebg'}}">备选路线</view>
+    <view class="{{current_pathid==2?'changebg_selected':'changebg'}}">{{strategy2}}</view>
     <view class="{{current_pathid==2?'changedis_selected':'changedis'}}">{{duration2}}</view>
     <view class="{{current_pathid==2?'changetime_selected':'changetime'}}">{{distance2}}</view>
 </view>
@@ -194,7 +194,17 @@
 
 <view class="feiyong">
 <view class="feiyong_left">货物</view>
-   <view  class='feiyong_right'>{{orderinfo.cargo}}/{{orderinfo.mass}}吨/{{orderinfo.size}}</view>
+   <view  class='feiyong_right'>{{orderinfo.cargo}}/{{orderinfo.mass}}吨/{{orderinfo.size}}/{{orderinfo.peizai}}/{{orderinfo.chaoxian}}</view>
+</view>
+
+<view style="background-color:white;width:100%;">
+<view class="line" style="margin-left:3%;width:97%;"></view>
+</view>
+
+<!--时间-->
+<view class="feiyong">
+  <view class="feiyong_left">时间</view>
+  <view class="feiyong_right">{{orderinfo.time}} 接货 / {{orderinfo.arrive_time}} 到货</view>
 </view>
 
 <view style="background-color:white;width:100%;">
@@ -228,6 +238,15 @@
   <view class="feiyong_right">{{orderinfo.distance}}公里 <label style="color:#ED1C24">￥{{orderinfo.price}}元</label></view>
 </view>
 
+<view style="background-color:white;width:100%;">
+<view class="line" style="margin-left:3%;width:97%;"></view>
+</view>
+
+<!--结算-->
+<view class="feiyong">
+  <view class="feiyong_left">结算</view>
+  <view class="feiyong_right">{{orderinfo.youka}}元油卡 + {{orderinfo.price-orderinfo.youka}}元现金</view>
+</view>
 
 <!--运单信息-->
 <view  wx:if="{{orderimg}}" class='productname'>运单二维码</view>
@@ -292,6 +311,41 @@
     </view>
 </view>
 
+
+
+<!--司机评价-->
+<view wx:if="{{orderinfo.comment_to_company.content}}" class='productname'>司机评价</view>
+  <view wx:if="{{orderinfo.comment_to_company.content}}" style="background-color:white;width:100%;">
+    <view class="line" style="margin-left:3%;width:97%;"></view>
+  </view>
+  <view wx:if="{{orderinfo.comment_to_company.content}}" class="feiyong_tousu">
+    <view class="feiyong_tousu_left" >{{orderinfo.comment_to_company.content}} </view>
+</view>
+
+<view wx:if="{{orderinfo.comment_to_company.pics.length>0}}" class='driverinfo' style="display:flex;padding-top:0">
+  
+    <view style="width:100%;">
+      <image catchtap='show_com_pics'  wx:for="{{orderinfo.comment_to_company.pics}}" wx:for-index="index" class="pt_image" src="{{orderinfo.comment_to_company.pics[index]}}" data-img="{{orderinfo.comment_to_company.pics[index]}}" />
+
+    </view>
+</view>
+
+<!--企业评价-->
+<view wx:if="{{orderinfo.comment_to_driver.content}}" class='productname'>收货方评价</view>
+  <view wx:if="{{orderinfo.comment_to_driver.content}}" style="background-color:white;width:100%;">
+    <view class="line" style="margin-left:3%;width:97%;"></view>
+  </view>
+  <view wx:if="{{orderinfo.comment_to_driver.content}}" class="feiyong_tousu">
+    <view class="feiyong_tousu_left" >{{orderinfo.comment_to_driver.content}} </view>
+</view>
+
+<view wx:if="{{orderinfo.comment_to_driver.pics.length>0}}" class='driverinfo' style="display:flex;padding-top:0">
+  
+    <view style="width:100%;">
+      <image catchtap='show_driver_pics'  wx:for="{{orderinfo.comment_to_driver.pics}}" wx:for-index="index" class="pt_image" src="{{orderinfo.comment_to_driver.pics[index]}}" data-img="{{orderinfo.comment_to_driver.pics[index]}}" />
+
+    </view>
+</view>
 
 
 <!--联系平台-->

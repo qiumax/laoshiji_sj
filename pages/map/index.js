@@ -240,6 +240,7 @@ Page({
     _this.setData({ current_pathid: p_id })
     _this.setData({ polyline: polylines })
   },
+  
   //路径规划
   direction: function () {
     var _this = this

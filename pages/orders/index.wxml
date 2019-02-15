@@ -39,7 +39,7 @@
     <view>
         <view style='display:table-cell;padding-top:20rpx;padding-left:20rpx;padding-bottom:20rpx;'>
             <view class="viewtitle"><image src="/images/shijian.png" class="view_img" /> <label class="viewlabel">{{order.time}}</label></view>
-            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{order.cargo}} / {{order.mass}}吨 /  {{order.size}} </label></view>
+            <view class="viewtitle"><image src="/images/fahuo.png" class="view_img" /> <label class="viewlabel">{{order.cargo}} / {{order.mass}}吨/{{order.size}}/{{order.peizai}}/{{order.chaoxian}} </label></view>
             <view class="viewtitle"><image src="/images/xiangqing.png" class="view_img"/> <label class="viewlabel">{{order.remark}}</label></view>
         </view>
     </view>

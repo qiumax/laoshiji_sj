@@ -213,7 +213,8 @@ Page({
               console.log('ok')
               console.log(res.data)
               res.data.forEach((v, k) => {
-                res.data[k].time = util.formatDateTime(v.time)
+                res.data[k].time = util.formatDate(v.time)
+                res.data[k].arrive_time = util.formatDate(v.arrive_time)
               })
               _this.setData({ 
                 needlist: res.data,

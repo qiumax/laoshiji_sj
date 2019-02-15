@@ -344,6 +344,7 @@ Page({
             console.log(res)
             if (res.data.phoneNumber) {
               var phone = res.data.phoneNumber
+              _this.setData({ phone: res.data.phoneNumber })
               //更新
               wx.request({
                 url: app.globalData.host + '/api/user/updatePhone',
@@ -360,7 +361,7 @@ Page({
                   console.log('update success')
                   wx.setStorageSync('phone', phone)
                   console.log(phone)
-                  _this.setData({ phone: res.data.phoneNumber })
+                 
                   //进入相应页面
 
                   clearInterval(_this.data.interval)

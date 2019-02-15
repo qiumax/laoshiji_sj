@@ -51,13 +51,15 @@ bindtypeChange:function(e){
   var typeindex = e.detail.value
   var trucktypes  = this.data.trucktypes
   console.log(trucktypes[typeindex])
-  this.setData({ trucktype: trucktypes[typeindex]}) 
+  this.setData({ truck_type: trucktypes[typeindex]}) 
 },
 
 bindlengthChange: function (e) {
   console.log(e)
   var lenindex = e.detail.value
-  
+  var trucks = this.data.trucks
+  console.log(trucks[lenindex])
+  this.setData({truck_length:trucks[lenindex]})
 },
 
 
@@ -81,8 +83,13 @@ getTrucklist:function(){
     }, 
     success:function(res){
       console.log(res.data.trucks)
+      var trucks = new Array()
+      res.data.trucks.forEach((v,k)=>{
+        console.log(v)
+        trucks.push(v.name)
+      })
+      _this.setData({ trucks: trucks})
 
-      _this.setData({trucks:res.data.trucks})
     }
 
   })
@@ -124,6 +131,8 @@ getTrucklist:function(){
               img_gcpz: res.data.sany_truck_img ? res.data.sany_truck_img + "? v =" + Math.random() * 9999 + 1:'/images/gcpz.png',
               name: res.data.name,
               phone: res.data.phone,
+              truck_type:res.data.truck_type,
+              truck_length:res.data.truck_length,
               id: res.data.id
             })
           }
@@ -259,7 +268,9 @@ getTrucklist:function(){
     var name = this.data.name
     var phone = this.data.phone
     var id = this.data.id
-    
+    var truck_type = this.data.truck_type
+    var truck_length = this.data.truck_length
+
     if (!name || name == '') {
       wx.showToast({
         title: '姓名不能为空！',
@@ -278,6 +289,24 @@ getTrucklist:function(){
       return false;
     }
 
+    if (!truck_length || truck_length == '') {
+      wx.showToast({
+        title: '车长信息不能为空',
+        icon: 'none',
+        duration: 1000
+      })
+      return false;
+    }
+
+
+    if (!truck_type || truck_type == '') {
+      wx.showToast({
+        title: '车型信息不能为空',
+        icon: 'none',
+        duration: 1000
+      })
+      return false;
+    }
 
     if (!phone || phone == '') {
       wx.showToast({
@@ -361,6 +390,8 @@ getTrucklist:function(){
         's_id': wx.getStorageSync('s_id'),
         'name': name,
         'phone': phone,
+        'truck_type':truck_type,
+        'truck_length':truck_length,
         'id':id
       },
       method: 'POST',

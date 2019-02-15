@@ -233,16 +233,16 @@ Page({
       })
       return false
     }
-    if (!_this.data.pics || _this.data.pics.length == 0) {
-      _this.setData({ showUpload: true })
-      _this.setData({ showUpload0: true })
-      wx.showToast({
-        title: '请先上传图片',
-        icon: 'none',
-        duration: 5000
-      })
-      return false
-    }
+    // if (!_this.data.pics || _this.data.pics.length == 0) {
+    //   _this.setData({ showUpload: true })
+    //   _this.setData({ showUpload0: true })
+    //   wx.showToast({
+    //     title: '请先上传图片',
+    //     icon: 'none',
+    //     duration: 5000
+    //   })
+    //   return false
+    // }
     var comment_to_company = new Array()
     comment_to_company = {
       points: star,
